@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>久坐白领自救计划｜健康传播活动报告</title>
+    <style>
+      :root {
+        --paper: #f7efe3;
+        --paper-2: #efe2d0;
+        --ink: #241f1e;
+        --muted: rgba(36, 31, 30, 0.68);
+        --rose: #704743;
+        --rose-dark: #4d2e2c;
+        --olive: #657250;
+        --amber: #b48250;
+        --cream: #fffaf2;
+        --line: rgba(112, 71, 67, 0.14);
+        --shadow: 0 24px 70px rgba(68, 45, 39, 0.13);
+        --radius: 28px;
+        --font-title: "Songti SC", "Noto Serif SC", "STSong", serif;
+        --font-body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: #eadfce;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-body);
+        background:
+          radial-gradient(circle at 12% 8%, rgba(180, 130, 80, 0.24), transparent 28%),
+          radial-gradient(circle at 88% 16%, rgba(112, 71, 67, 0.18), transparent 30%),
+          linear-gradient(145deg, #efe4d4 0%, #fbf5ec 52%, #eee2d3 100%);
+      }
+
+      .report {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 42px 0 72px;
+      }
+
+      .cover,
+      .section,
+      .callout,
+      .shot-card,
+      .script-card {
+        border: 1px solid var(--line);
+        background: rgba(255, 250, 242, 0.82);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .cover {
+        position: relative;
+        overflow: hidden;
+        min-height: 520px;
+        padding: 56px;
+        display: grid;
+        align-items: end;
+      }
+
+      .cover::before {
+        content: "";
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        right: -96px;
+        top: -80px;
+        border-radius: 999px;
+        background: rgba(112, 71, 67, 0.14);
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--rose);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: var(--font-title);
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        max-width: 780px;
+        font-size: clamp(3.2rem, 9vw, 6.6rem);
+        line-height: 0.92;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        line-height: 1.02;
+      }
+
+      h3 {
+        font-size: 1.55rem;
+        line-height: 1.15;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.78;
+      }
+
+      .subtitle {
+        max-width: 760px;
+        margin: 22px 0 0;
+        font-size: 1.12rem;
+      }
+
+      .meta-grid,
+      .overview-grid,
+      .ttm-grid,
+      .material-grid,
+      .eval-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .meta-grid {
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 34px;
+      }
+
+      .meta-grid article,
+      .overview-grid article,
+      .ttm-grid article,
+      .eval-grid article {
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.54);
+      }
+
+      .meta-grid strong,
+      .overview-grid strong,
+      .ttm-grid strong,
+      .eval-grid strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+
+      .section {
+        margin-top: 28px;
+        padding: 38px;
+      }
+
+      .section-head {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .overview-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .ttm-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .tag-row,
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tag,
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .tag {
+        background: rgba(101, 114, 80, 0.14);
+        color: var(--olive);
+      }
+
+      .pill {
+        background: rgba(112, 71, 67, 0.12);
+        color: var(--rose);
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: 0.72fr 1fr;
+        gap: 26px;
+        align-items: start;
+      }
+
+      .flow-steps {
+        display: grid;
+        gap: 12px;
+        position: sticky;
+        top: 24px;
+      }
+
+      .flow-steps article {
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.56);
+        border: 1px solid var(--line);
+      }
+
+      .screenshot-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .shot-card {
+        overflow: hidden;
+      }
+
+      .shot-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .shot-card figcaption {
+        padding: 14px 16px 18px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .script-grid {
+        display: grid;
+        gap: 22px;
+      }
+
+      .script-card {
+        padding: 24px;
+      }
+
+      .script-meta {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin: 18px 0;
+      }
+
+      .script-meta span {
+        padding: 12px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.56);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.52);
+      }
+
+      th,
+      td {
+        padding: 14px;
+        vertical-align: top;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+        text-align: left;
+      }
+
+      th {
+        color: var(--ink);
+        background: rgba(112, 71, 67, 0.08);
+        font-weight: 700;
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      .callout {
+        margin-top: 22px;
+        padding: 22px;
+        background:
+          radial-gradient(circle at right top, rgba(101, 114, 80, 0.12), transparent 30%),
+          rgba(255, 250, 242, 0.86);
+      }
+
+      .material-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .material-grid article {
+        padding: 20px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.54);
+      }
+
+      .eval-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer {
+        margin-top: 28px;
+        padding: 26px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      @media (max-width: 860px) {
+        .cover,
+        .section {
+          padding: 26px;
+        }
+
+        .meta-grid,
+        .overview-grid,
+        .ttm-grid,
+        .flow,
+        .script-meta,
+        .material-grid,
+        .eval-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .screenshot-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .flow-steps {
+          position: static;
+        }
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+
+        .report {
+          width: 100%;
+          padding: 0;
+        }
+
+        .cover,
+        .section,
+        .callout,
+        .shot-card,
+        .script-card {
+          box-shadow: none;
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="report">
+      <header class="cover">
+        <div>
+          <p class="eyebrow">Health Communication Campaign Report</p>
+          <h1>久坐白领自救计划</h1>
+          <p class="subtitle">
+            面向一线城市 25-35 岁互联网从业者的体重管理活动。以久坐、外卖、熬夜造成的隐性肥胖与代谢负担为切入点，通过 H5 测试与 3 天食谱打卡挑战，推动用户从“意识到问题”走向“立即行动”。
+          </p>
+          <div class="meta-grid">
+            <article><strong>目标人群</strong><span>25-35 岁互联网白领</span></article>
+            <article><strong>核心理论</strong><span>转换理论模型 TTM</span></article>
+            <article><strong>主转化动作</strong><span>立即参加打卡活动</span></article>
+            <article><strong>核心物料</strong><span>活动 H5 + 短视频</span></article>
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">01 Activity Overview</p>
+          <h2>活动概述</h2>
+          <p>
+            「久坐白领自救计划」不是以“快速减肥”为卖点，而是把体重管理转化为低门槛、可执行、可反馈的生活方式挑战。活动承认互联网从业者时间紧、压力大、外卖依赖高的现实，用“先测状态，再开始 3 天打卡”的方式降低行动阻力。
+          </p>
+        </div>
+        <div class="overview-grid">
+          <article>
+            <strong>传播问题</strong>
+            <p>很多白领只关注体重数字，忽视久坐、外卖、熬夜带来的隐性肥胖和代谢负担。</p>
+          </article>
+          <article>
+            <strong>活动目标</strong>
+            <p>推动用户完成阶段跃迁：从未意识到问题，到愿意参加 3 天轻负担食谱打卡。</p>
+          </article>
+          <article>
+            <strong>转化设计</strong>
+            <p>用 4 题测试制造参与感，再用饮食人格和推荐挑战承接行动动机。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">02 TTM Strategy</p>
+          <h2>基于 TTM 的传播策略</h2>
+          <p>
+            目标用户不是同质化人群。他们处在行为改变的不同阶段，因此传播内容需要从“唤醒意识、降低阻力、促进行动”三个层次逐步推进。
+          </p>
+        </div>
+        <div class="ttm-grid">
+          <article>
+            <strong>无意图期 → 意图期</strong>
+            <p>通过隐性肥胖、久坐、外卖高糖陷阱等内容进行意识唤醒，但避免使用恐吓式诊断。</p>
+            <div class="tag-row"><span class="tag">意识唤醒</span><span class="tag">环境重新评估</span></div>
+          </article>
+          <article>
+            <strong>意图期 → 准备期</strong>
+            <p>降低“没时间、没精力”的感知障碍，强调 4 题测试和 3 天挑战的微成本。</p>
+            <div class="tag-row"><span class="tag">决策平衡</span><span class="tag">低门槛行动</span></div>
+          </article>
+          <article>
+            <strong>准备期 → 行动期</strong>
+            <p>用 Day 1 打卡页、餐后反馈和食谱结构帮助用户马上完成第一步。</p>
+            <div class="tag-row"><span class="tag">自我解放</span><span class="tag">即时反馈</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">03 H5 Funnel Design</p>
+          <h2>活动 H5 设计与截图</h2>
+          <p>
+            H5 已从工具型 App 原型改为线性活动漏斗：活动首页 → 4 题小测试 → 饮食人格结果页 → Day 1 打卡页。核心目标是让用户完成“立即参加打卡活动”。
+          </p>
+        </div>
+        <div class="flow">
+          <div class="flow-steps">
+            <article><strong>1. 活动首页</strong><p>突出“4 题测状态 + 3 天挑战”，减少注册感。</p></article>
+            <article><strong>2. 代谢状态测试</strong><p>围绕吃饭节奏、高负担餐、身体感受、目标四个问题。</p></article>
+            <article><strong>3. 结果页</strong><p>输出饮食人格、代谢状态信号和推荐挑战。</p></article>
+            <article><strong>4. Day 1 打卡</strong><p>直接进入第一天，选择一餐并获得即时反馈。</p></article>
+          </div>
+          <div class="screenshot-grid">
+            <figure class="shot-card">
+              <img src="report-assets/h5-landing.png" alt="H5 活动首页截图" />
+              <figcaption>活动首页：用“测一测饮食节奏”替代严肃报名，降低进入门槛。</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="report-assets/h5-quiz.png" alt="H5 测试页截图" />
+              <figcaption>测试页：4 题机制让用户产生“这是为我生成”的个性化感。</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="report-assets/h5-result.png" alt="H5 结果页截图" />
+              <figcaption>结果页：将代谢状态表达为轻量饮食人格，减少焦虑感。</figcaption>
+            </figure>
+            <figure class="shot-card">
+              <img src="report-assets/h5-checkin.png" alt="H5 Day 1 打卡页截图" />
+              <figcaption>Day 1 打卡页：不让用户停留在“知道”，而是立刻进入第一餐行动。</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">04 Communication Materials</p>
+          <h2>两个短视频脚本</h2>
+          <p>
+            两条短视频分别服务不同的 TTM 阶段：第一条负责意识唤醒，第二条负责行动转化。建议均采用 9:16 竖屏短视频，以“小红书/视频号/内网活动入口”为主要投放场景。
+          </p>
+        </div>
+
+        <div class="script-grid">
+          <article class="script-card">
+            <p class="eyebrow">Script 01 · 意识唤醒</p>
+            <h3>《体重没变，不代表你没胖》</h3>
+            <div class="script-meta">
+              <span>平台：小红书 / 抖音</span>
+              <span>时长：45-60 秒</span>
+              <span>阶段：无意图期 → 意图期</span>
+              <span>形式：口播 + 动画演示</span>
+            </div>
+            <table>
+              <thead>
+                <tr><th>时间</th><th>画面</th><th>字幕 / 旁白</th><th>传播目的</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0-3s</td>
+                  <td>工位前的白领，桌上有外卖和奶茶，镜头推近腰腹。</td>
+                  <td>“体重没变，就真的没胖吗？”</td>
+                  <td>用反常识钩子抓住注意力。</td>
+                </tr>
+                <tr>
+                  <td>4-12s</td>
+                  <td>体重秤数字正常，同时叠加久坐、熬夜、外卖画面。</td>
+                  <td>“很多打工人不是胖在体重上，而是胖在久坐和外卖堆出来的代谢负担里。”</td>
+                  <td>引入隐性肥胖概念，但不做诊断。</td>
+                </tr>
+                <tr>
+                  <td>13-25s</td>
+                  <td>动画链路：白天凑合 → 晚餐补偿 → 饭后困 → 第二天继续循环。</td>
+                  <td>“白天没空吃，晚上补回来，看起来只是忙，其实身体已经在提醒你。”</td>
+                  <td>让受众重新评估工作环境对健康的影响。</td>
+                </tr>
+                <tr>
+                  <td>26-40s</td>
+                  <td>展示 H5 测试题快速切换。</td>
+                  <td>“先别急着减肥，先测测你是哪种打工人饮食节奏。”</td>
+                  <td>降低焦虑，把意识唤醒导向低门槛测试。</td>
+                </tr>
+                <tr>
+                  <td>41-55s</td>
+                  <td>结果页出现“晚餐补偿型打工人”，随后出现挑战页。</td>
+                  <td>“知道问题在哪，下一餐才知道怎么吃。”</td>
+                  <td>引导点击 H5，进入测试。</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="callout">
+              <strong>结尾 CTA：</strong>
+              <span>测一测我的饮食节奏</span>
+            </div>
+          </article>
+
+          <article class="script-card">
+            <p class="eyebrow">Script 02 · 行动转化</p>
+            <h3>《别再靠意志力减肥了，先打卡 3 天》</h3>
+            <div class="script-meta">
+              <span>平台：小红书 / 视频号 / 内网</span>
+              <span>时长：45-60 秒</span>
+              <span>阶段：意图期 → 行动期</span>
+              <span>形式：剧情短片 + H5 录屏</span>
+            </div>
+            <table>
+              <thead>
+                <tr><th>时间</th><th>画面</th><th>字幕 / 旁白</th><th>传播目的</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0-5s</td>
+                  <td>晚上 10 点办公室，用户打开健身 App 又关掉。</td>
+                  <td>“你不是不想管体重，是每天真的太忙了。”</td>
+                  <td>承认现实阻碍，减少被说教感。</td>
+                </tr>
+                <tr>
+                  <td>6-15s</td>
+                  <td>收藏夹里全是减脂餐，桌上仍是外卖。</td>
+                  <td>“计划很多，坚持很难。一加班，就回到外卖。”</td>
+                  <td>击中意图期用户的行动障碍。</td>
+                </tr>
+                <tr>
+                  <td>16-28s</td>
+                  <td>打开 H5，快速完成 4 题测试。</td>
+                  <td>“这次不要求完美自律，先用 4 题找到你的饮食节奏。”</td>
+                  <td>降低行动成本，提高参与感。</td>
+                </tr>
+                <tr>
+                  <td>29-42s</td>
+                  <td>进入 Day 1 打卡页，选择“牛肉饭 + 奶茶”，出现反馈。</td>
+                  <td>“记录完一餐，就知道这餐怎么样，下一餐怎么补。”</td>
+                  <td>展示即时反馈和产品价值。</td>
+                </tr>
+                <tr>
+                  <td>43-58s</td>
+                  <td>按钮变为“已完成第一餐打卡”，画面转向轻松表情。</td>
+                  <td>“不是靠饿撑住，而是先把每一餐慢慢吃稳。”</td>
+                  <td>推动用户点击“立即参加打卡活动”。</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="callout">
+              <strong>结尾 CTA：</strong>
+              <span>立即参加 3 天打卡</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">05 Material Matrix</p>
+          <h2>传播物料矩阵</h2>
+        </div>
+        <div class="material-grid">
+          <article>
+            <h3>小红书短视频</h3>
+            <p>用于触达无意图期和意图期用户，以“体重没变不等于没胖”“别靠意志力减肥”为内容钩子。</p>
+            <div class="pill-row"><span class="pill">意识唤醒</span><span class="pill">种草测试</span></div>
+          </article>
+          <article>
+            <h3>活动 H5</h3>
+            <p>承接视频流量，完成 4 题测试、结果生成和 Day 1 打卡，是本次活动的主要转化载体。</p>
+            <div class="pill-row"><span class="pill">测试转化</span><span class="pill">即时行动</span></div>
+          </article>
+          <article>
+            <h3>公司内网 / 茶水间海报</h3>
+            <p>可将 H5 二维码嵌入“外卖/便利店救命指南”中，在用户点餐前进行干预。</p>
+            <div class="pill-row"><span class="pill">降低门槛</span><span class="pill">场景触达</span></div>
+          </article>
+          <article>
+            <h3>脉脉话题运营</h3>
+            <p>用 #那些逃离过劳肥的互联网狠人# 鼓励用户分享打卡经验和工作日饮食策略。</p>
+            <div class="pill-row"><span class="pill">社会支持</span><span class="pill">榜样扩散</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">06 Evaluation Plan</p>
+          <h2>评估方案</h2>
+          <p>评估不只看曝光量，更要判断用户是否完成 TTM 阶段跃迁。</p>
+        </div>
+        <div class="eval-grid">
+          <article>
+            <strong>量化指标</strong>
+            <p>短视频完播率、H5 点击率、测试完成率、结果页到 Day 1 打卡转化率、第一餐打卡完成率。</p>
+          </article>
+          <article>
+            <strong>阶段转变评估</strong>
+            <p>活动前后问卷比较：无意图期比例是否下降，准备期/行动期比例是否上升。</p>
+          </article>
+          <article>
+            <strong>行为数据</strong>
+            <p>记录用户选择的饮食人格、目标类型、第一餐选择和即时反馈完成情况。</p>
+          </article>
+          <article>
+            <strong>质性研究</strong>
+            <p>访谈半途放弃用户，分析加班、外卖环境、低血糖感等复发因素。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <p class="eyebrow">07 Risk Boundary</p>
+          <h2>健康传播边界</h2>
+        </div>
+        <div class="callout">
+          <p>
+            本活动应避免使用“诊断”“治愈”“保证减重”等医疗化或绝对化表达。所有内容应使用“可能”“值得关注”“更适合”“帮助你吃稳”等生活方式建议语言，强调该活动是健康管理与行为改变支持工具，而不是医疗判断。
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        久坐白领自救计划｜健康传播活动报告｜活动 H5 截图来自本地 demo-web 原型
+      </footer>
+    </div>
+  </body>
+</html>
