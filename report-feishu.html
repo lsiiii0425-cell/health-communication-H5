@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>久坐白领自救计划｜飞书表格复制版</title>
+    <style>
+      :root {
+        --paper: #f7efe3;
+        --ink: #241f1e;
+        --muted: rgba(36, 31, 30, 0.68);
+        --rose: #704743;
+        --olive: #657250;
+        --cream: #fffaf2;
+        --line: rgba(112, 71, 67, 0.16);
+        --shadow: 0 22px 64px rgba(68, 45, 39, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        background:
+          radial-gradient(circle at 12% 8%, rgba(180, 130, 80, 0.2), transparent 26%),
+          linear-gradient(145deg, #efe4d4 0%, #fbf5ec 54%, #eee2d3 100%);
+      }
+
+      .page {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 36px 0 72px;
+      }
+
+      header,
+      section {
+        margin-bottom: 22px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: rgba(255, 250, 242, 0.84);
+        box-shadow: var(--shadow);
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        letter-spacing: -0.04em;
+        font-family: "Songti SC", "STSong", serif;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 7vw, 4.8rem);
+        line-height: 0.98;
+      }
+
+      h2 {
+        margin-bottom: 14px;
+        font-size: 1.9rem;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      button,
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 0;
+        border-radius: 999px;
+        color: #fffaf2;
+        background: linear-gradient(135deg, #55302e, #8e5e56);
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      button.secondary,
+      a.button.secondary {
+        color: var(--rose);
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--line);
+      }
+
+      .hint {
+        margin-top: 12px;
+        color: var(--olive);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .table-wrap {
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      table {
+        width: 100%;
+        min-width: 1080px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 13px 14px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+        text-align: left;
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        color: var(--ink);
+        background: #eadbc9;
+        font-weight: 800;
+      }
+
+      td {
+        color: rgba(36, 31, 30, 0.78);
+        background: rgba(255, 255, 255, 0.36);
+      }
+
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: 0;
+      }
+
+      .copy-box {
+        width: 100%;
+        min-height: 180px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        color: rgba(36, 31, 30, 0.76);
+        background: rgba(255, 255, 255, 0.58);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .image-grid figure {
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .image-grid img {
+        display: block;
+        width: 100%;
+      }
+
+      .image-grid figcaption {
+        padding: 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 900px) {
+        .image-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <h1>久坐白领自救计划</h1>
+        <p>
+          飞书表格复制版。点击下方按钮即可复制为 TSV 表格格式，随后粘贴到飞书表格，会自动按列拆分。原图文报告 HTML 保留不变。
+        </p>
+        <div class="toolbar">
+          <button id="copy-main" type="button">复制完整报告到飞书表格</button>
+          <button class="secondary" id="copy-scripts" type="button">只复制短视频脚本表</button>
+          <a class="button secondary" href="./久坐白领自救计划-健康传播报告.html" target="_blank">打开图文报告版</a>
+        </div>
+        <div class="hint" id="copy-status">等待复制</div>
+      </header>
+
+      <section>
+        <h2>报告主表</h2>
+        <div class="table-wrap">
+          <table id="main-table">
+            <thead>
+              <tr>
+                <th>模块</th>
+                <th>TTM 阶段</th>
+                <th>受众心理 / 问题</th>
+                <th>传播策略</th>
+                <th>H5 / 物料设计</th>
+                <th>关键文案 / 内容</th>
+                <th>评估指标</th>
+                <th>图片素材路径</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>活动概述</td>
+                <td>整体阶段跃迁</td>
+                <td>25-35 岁一线城市互联网从业者，长期久坐、依赖外卖、作息不规律；部分人只看体重，忽视隐性肥胖与代谢负担。</td>
+                <td>以“久坐白领自救计划”为活动主题，将体重管理包装为低门槛、短周期、可反馈的健康挑战。</td>
+                <td>活动 H5 采用线性漏斗：活动首页 → 4 题测试 → 结果页 → Day 1 打卡页。</td>
+                <td>“4 个问题，生成你的代谢状态画像，并直接开始 3 天轻负担食谱打卡挑战。”</td>
+                <td>H5 访问量、测试开始率、测试完成率、结果页转化率。</td>
+                <td>report-assets/h5-landing.png</td>
+              </tr>
+              <tr>
+                <td>策略一：意识唤醒</td>
+                <td>无意图期 → 意图期</td>
+                <td>用户认为自己四肢纤细或体重正常，因此不觉得需要体重管理。</td>
+                <td>运用意识唤醒与环境重新评估，解释久坐、外卖、熬夜可能带来的隐性代谢负担。</td>
+                <td>短视频 1：《体重没变，不代表你没胖》；H5 首页承接“测一测饮食节奏”。</td>
+                <td>“体重没变，就真的没胖吗？”“先别急着减肥，先测测你是哪种打工人饮食节奏。”</td>
+                <td>短视频完播率、收藏率、评论中对“隐性肥胖”的讨论量。</td>
+                <td>report-assets/h5-landing.png</td>
+              </tr>
+              <tr>
+                <td>策略二：降低行动阻力</td>
+                <td>意图期 → 准备期</td>
+                <td>用户知道自己状态不好，但觉得没时间、没精力、坚持不了。</td>
+                <td>运用决策平衡，强调“微成本高收益”：4 题测试、3 天挑战、第一餐即可开始。</td>
+                <td>H5 测试页将复杂评估压缩成 4 题：吃饭节奏、高负担餐、身体感受、当前目标。</td>
+                <td>“不用完美自律，先用 4 题找到你的饮食节奏。”</td>
+                <td>测试完成率、每题流失率、结果页停留时长。</td>
+                <td>report-assets/h5-quiz.png</td>
+              </tr>
+              <tr>
+                <td>策略三：促进行动</td>
+                <td>准备期 → 行动期</td>
+                <td>用户有尝试意愿，但缺少具体工具和即时反馈。</td>
+                <td>运用自我解放与即时反馈，让用户从结果页直接进入 Day 1 第一餐打卡。</td>
+                <td>结果页输出饮食人格 + 代谢信号 + 推荐挑战，随后进入 Day 1 打卡页。</td>
+                <td>“你是晚餐补偿型打工人。”“开始第一天打卡。”</td>
+                <td>结果页到 Day 1 转化率、第一餐选择率、第一餐打卡完成率。</td>
+                <td>report-assets/h5-result.png; report-assets/h5-checkin.png</td>
+              </tr>
+              <tr>
+                <td>H5 首页</td>
+                <td>无意图期 / 意图期</td>
+                <td>用户注意力短，不愿进入复杂报名流程。</td>
+                <td>用活动感、视觉化餐盘和低门槛承诺吸引点击。</td>
+                <td>首屏包含活动标题、3 个利益点、主 CTA“立即参加打卡活动”。</td>
+                <td>“测一测你的打工人饮食节奏。”</td>
+                <td>首屏 CTA 点击率、页面跳出率。</td>
+                <td>report-assets/h5-landing.png</td>
+              </tr>
+              <tr>
+                <td>H5 测试页</td>
+                <td>意图期 → 准备期</td>
+                <td>用户需要一点个性化参与感，但不能被长问卷劝退。</td>
+                <td>采用 4 题轻测试，兼顾可信度和完成率。</td>
+                <td>题目包括工作日吃饭节奏、高负担餐频率、身体感受、减脂/维持/增肌目标。</td>
+                <td>“最近工作日，你的吃饭节奏更像哪一种？”</td>
+                <td>单题完成率、整体完成率、答案分布。</td>
+                <td>report-assets/h5-quiz.png</td>
+              </tr>
+              <tr>
+                <td>H5 结果页</td>
+                <td>准备期</td>
+                <td>用户需要知道“这和我有关”，但不希望被焦虑或羞辱。</td>
+                <td>用“饮食人格 + 代谢状态画像”替代风险恐吓。</td>
+                <td>输出如“晚餐补偿型打工人”，并推荐 3 天轻负担回稳挑战。</td>
+                <td>“白天经常先扛过去，真正的饥饿感会在晚上集中出现。”</td>
+                <td>挑战按钮点击率、截图分享率。</td>
+                <td>report-assets/h5-result.png</td>
+              </tr>
+              <tr>
+                <td>H5 Day 1 打卡页</td>
+                <td>行动期</td>
+                <td>用户愿意开始，但第一步需要非常明确。</td>
+                <td>直接进入第一天第一餐记录，选择餐食后立刻显示反馈。</td>
+                <td>展示今日建议结构、餐食选择、即时反馈、营养进度条。</td>
+                <td>“今天不用做完美记录，先完成第一餐。”</td>
+                <td>第一餐完成率、反馈查看率、按钮完成率。</td>
+                <td>report-assets/h5-checkin.png</td>
+              </tr>
+              <tr>
+                <td>评估方案</td>
+                <td>阶段转变评估</td>
+                <td>不能只看曝光，需要判断用户是否从认知走向行动。</td>
+                <td>结合量化数据、阶段问卷和质性访谈。</td>
+                <td>活动前后问卷、H5 行为数据、半途放弃用户访谈。</td>
+                <td>评估无意图期比例是否下降，准备期/行动期比例是否上升。</td>
+                <td>问卷阶段变化、H5 转化漏斗、访谈主题归因。</td>
+                <td>无</td>
+              </tr>
+              <tr>
+                <td>健康传播边界</td>
+                <td>全阶段</td>
+                <td>健康传播容易过度制造焦虑或医疗化表达。</td>
+                <td>避免诊断、治愈、保证减重等表述，强调生活方式支持。</td>
+                <td>所有页面和视频使用“可能、值得关注、帮助你吃稳”等表达。</td>
+                <td>“不是靠饿撑住，而是先把每一餐慢慢吃稳。”</td>
+                <td>文案合规检查、用户负面情绪反馈监测。</td>
+                <td>无</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>短视频脚本表</h2>
+        <div class="table-wrap">
+          <table id="script-table">
+            <thead>
+              <tr>
+                <th>视频</th>
+                <th>平台</th>
+                <th>TTM 阶段</th>
+                <th>时间</th>
+                <th>画面</th>
+                <th>字幕 / 旁白</th>
+                <th>传播目的</th>
+                <th>结尾 CTA</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>《体重没变，不代表你没胖》</td>
+                <td>小红书 / 抖音</td>
+                <td>无意图期 → 意图期</td>
+                <td>0-3s</td>
+                <td>工位前白领，桌上有外卖和奶茶，镜头推近腰腹。</td>
+                <td>“体重没变，就真的没胖吗？”</td>
+                <td>反常识钩子，抓住注意力。</td>
+                <td>测一测我的饮食节奏</td>
+              </tr>
+              <tr>
+                <td>《体重没变，不代表你没胖》</td>
+                <td>小红书 / 抖音</td>
+                <td>无意图期 → 意图期</td>
+                <td>4-12s</td>
+                <td>体重秤数字正常，同时叠加久坐、熬夜、外卖画面。</td>
+                <td>“很多打工人不是胖在体重上，而是胖在久坐和外卖堆出来的代谢负担里。”</td>
+                <td>引入隐性肥胖概念，但避免诊断。</td>
+                <td>测一测我的饮食节奏</td>
+              </tr>
+              <tr>
+                <td>《体重没变，不代表你没胖》</td>
+                <td>小红书 / 抖音</td>
+                <td>无意图期 → 意图期</td>
+                <td>13-25s</td>
+                <td>动画链路：白天凑合 → 晚餐补偿 → 饭后困 → 第二天继续循环。</td>
+                <td>“白天没空吃，晚上补回来，看起来只是忙，其实身体已经在提醒你。”</td>
+                <td>让用户重新评估工作环境对健康的影响。</td>
+                <td>测一测我的饮食节奏</td>
+              </tr>
+              <tr>
+                <td>《体重没变，不代表你没胖》</td>
+                <td>小红书 / 抖音</td>
+                <td>无意图期 → 意图期</td>
+                <td>26-40s</td>
+                <td>H5 测试题快速切换。</td>
+                <td>“先别急着减肥，先测测你是哪种打工人饮食节奏。”</td>
+                <td>把意识唤醒导向低门槛测试。</td>
+                <td>测一测我的饮食节奏</td>
+              </tr>
+              <tr>
+                <td>《别再靠意志力减肥了，先打卡 3 天》</td>
+                <td>小红书 / 视频号 / 内网</td>
+                <td>意图期 → 行动期</td>
+                <td>0-5s</td>
+                <td>晚上 10 点办公室，用户打开健身 App 又关掉。</td>
+                <td>“你不是不想管体重，是每天真的太忙了。”</td>
+                <td>承认现实阻碍，减少被说教感。</td>
+                <td>立即参加 3 天打卡</td>
+              </tr>
+              <tr>
+                <td>《别再靠意志力减肥了，先打卡 3 天》</td>
+                <td>小红书 / 视频号 / 内网</td>
+                <td>意图期 → 行动期</td>
+                <td>6-15s</td>
+                <td>收藏夹里全是减脂餐，桌上仍是外卖。</td>
+                <td>“计划很多，坚持很难。一加班，就回到外卖。”</td>
+                <td>击中意图期用户的行动障碍。</td>
+                <td>立即参加 3 天打卡</td>
+              </tr>
+              <tr>
+                <td>《别再靠意志力减肥了，先打卡 3 天》</td>
+                <td>小红书 / 视频号 / 内网</td>
+                <td>意图期 → 行动期</td>
+                <td>16-28s</td>
+                <td>打开 H5，快速完成 4 题测试。</td>
+                <td>“这次不要求完美自律，先用 4 题找到你的饮食节奏。”</td>
+                <td>降低行动成本，提高参与感。</td>
+                <td>立即参加 3 天打卡</td>
+              </tr>
+              <tr>
+                <td>《别再靠意志力减肥了，先打卡 3 天》</td>
+                <td>小红书 / 视频号 / 内网</td>
+                <td>意图期 → 行动期</td>
+                <td>29-42s</td>
+                <td>进入 Day 1 打卡页，选择“牛肉饭 + 奶茶”，出现反馈。</td>
+                <td>“记录完一餐，就知道这餐怎么样，下一餐怎么补。”</td>
+                <td>展示即时反馈和产品价值。</td>
+                <td>立即参加 3 天打卡</td>
+              </tr>
+              <tr>
+                <td>《别再靠意志力减肥了，先打卡 3 天》</td>
+                <td>小红书 / 视频号 / 内网</td>
+                <td>意图期 → 行动期</td>
+                <td>43-58s</td>
+                <td>按钮变为“已完成第一餐打卡”，画面转向轻松表情。</td>
+                <td>“不是靠饿撑住，而是先把每一餐慢慢吃稳。”</td>
+                <td>推动用户点击“立即参加打卡活动”。</td>
+                <td>立即参加 3 天打卡</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>H5 截图素材</h2>
+        <div class="image-grid">
+          <figure>
+            <img src="report-assets/h5-landing.png" alt="H5 活动首页" />
+            <figcaption>H5 活动首页</figcaption>
+          </figure>
+          <figure>
+            <img src="report-assets/h5-quiz.png" alt="H5 测试页" />
+            <figcaption>H5 测试页</figcaption>
+          </figure>
+          <figure>
+            <img src="report-assets/h5-result.png" alt="H5 结果页" />
+            <figcaption>H5 结果页</figcaption>
+          </figure>
+          <figure>
+            <img src="report-assets/h5-checkin.png" alt="H5 打卡页" />
+            <figcaption>H5 Day 1 打卡页</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <h2>复制预览</h2>
+        <p>如果按钮复制失败，可以手动全选下方内容复制到飞书表格。</p>
+        <textarea class="copy-box" id="copy-box" readonly></textarea>
+      </section>
+    </main>
+
+    <script>
+      function tableToTsv(table) {
+        return Array.from(table.querySelectorAll("tr"))
+          .map((row) =>
+            Array.from(row.children)
+              .map((cell) => cell.innerText.replace(/\s+/g, " ").trim())
+              .join("\t")
+          )
+          .join("\n");
+      }
+
+      function buildMainTsv() {
+        return tableToTsv(document.querySelector("#main-table"));
+      }
+
+      function buildScriptsTsv() {
+        return tableToTsv(document.querySelector("#script-table"));
+      }
+
+      async function copyText(text, label) {
+        document.querySelector("#copy-box").value = text;
+        try {
+          await navigator.clipboard.writeText(text);
+          document.querySelector("#copy-status").textContent = `${label}已复制，可以直接粘贴到飞书表格。`;
+        } catch (error) {
+          document.querySelector("#copy-box").select();
+          document.execCommand("copy");
+          document.querySelector("#copy-status").textContent = `${label}已放入下方文本框，请手动复制或直接粘贴。`;
+        }
+      }
+
+      document.querySelector("#copy-main").addEventListener("click", () => {
+        copyText(buildMainTsv(), "完整报告主表");
+      });
+
+      document.querySelector("#copy-scripts").addEventListener("click", () => {
+        copyText(buildScriptsTsv(), "短视频脚本表");
+      });
+
+      document.querySelector("#copy-box").value = buildMainTsv();
+    </script>
+  </body>
+</html>
