@@ -1,0 +1,531 @@
+:root {
+  --paper: #f6efe4;
+  --paper-deep: #eadbca;
+  --ink: #241f1e;
+  --muted: rgba(36, 31, 30, 0.64);
+  --muted-strong: rgba(36, 31, 30, 0.78);
+  --rosewood: #724541;
+  --rosewood-dark: #55302e;
+  --olive: #687452;
+  --amber: #b98450;
+  --cream: #fffaf1;
+  --line: rgba(114, 69, 65, 0.12);
+  --shadow: 0 28px 80px rgba(83, 52, 45, 0.16);
+  --radius-xxl: 34px;
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 18px;
+  --font-display: "Fraunces", "Noto Serif SC", serif;
+  --font-title: "Noto Serif SC", serif;
+  --font-body: "IBM Plex Sans", "PingFang SC", "Hiragino Sans GB", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 10%, rgba(185, 132, 80, 0.22), transparent 28%),
+    radial-gradient(circle at 86% 14%, rgba(114, 69, 65, 0.18), transparent 30%),
+    radial-gradient(circle at 22% 88%, rgba(104, 116, 82, 0.16), transparent 26%),
+    linear-gradient(145deg, #efe3d1 0%, #fbf5ec 54%, #efe4d7 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+button {
+  font: inherit;
+}
+
+.campaign-shell {
+  width: min(100%, 460px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 22px 18px 34px;
+}
+
+.campaign-screen {
+  display: none;
+  min-height: calc(100vh - 56px);
+  animation: pageIn 260ms ease both;
+}
+
+.campaign-screen.is-active {
+  display: block;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ambient-card,
+.question-card,
+.result-card,
+.recipe-card,
+.checkin-card,
+.feedback-card,
+.checkin-hero,
+.challenge-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xxl);
+  background:
+    linear-gradient(160deg, rgba(255, 252, 246, 0.94), rgba(249, 240, 229, 0.78)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.4), transparent);
+  box-shadow: var(--shadow);
+}
+
+.ambient-card {
+  min-height: calc(100vh - 56px);
+  padding: 34px 22px 24px;
+}
+
+.ambient-card::before,
+.result-card::before,
+.checkin-hero::before {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  top: -70px;
+  right: -62px;
+  border-radius: 999px;
+  background: rgba(114, 69, 65, 0.12);
+  filter: blur(8px);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: rgba(114, 69, 65, 0.74);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-title);
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+h1 {
+  max-width: 10ch;
+  font-size: clamp(3rem, 14vw, 4.65rem);
+  line-height: 0.92;
+}
+
+h2 {
+  font-size: clamp(2.25rem, 10vw, 3.3rem);
+  line-height: 0.98;
+}
+
+h3 {
+  font-size: 1.45rem;
+  line-height: 1.08;
+}
+
+.hero-copy,
+.persona-summary,
+.challenge-card p,
+.checkin-hero p,
+.meal-choice span,
+#feedback-copy {
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.hero-copy {
+  max-width: 31ch;
+  margin: 18px 0 0;
+  font-size: 16px;
+}
+
+.hero-visual {
+  position: relative;
+  height: 218px;
+  margin: 30px 0 26px;
+}
+
+.plate {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.54);
+  box-shadow: 0 18px 50px rgba(83, 52, 45, 0.15);
+}
+
+.plate--main {
+  width: 168px;
+  height: 168px;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 255, 255, 0.72), transparent 26%),
+    linear-gradient(140deg, #7b4e49, #b78475);
+  color: #fffaf1;
+}
+
+.plate--main span {
+  font-size: 13px;
+}
+
+.plate--main strong {
+  font-family: var(--font-display);
+  font-size: 4.4rem;
+  line-height: 0.8;
+}
+
+.plate--side,
+.plate--accent {
+  width: 86px;
+  height: 86px;
+  font-weight: 700;
+}
+
+.plate--side {
+  left: 20px;
+  bottom: 18px;
+  background: #f0d4af;
+  color: #8a5e34;
+}
+
+.plate--accent {
+  right: 22px;
+  bottom: 8px;
+  background: #dfe6c8;
+  color: var(--olive);
+}
+
+.benefit-grid {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.benefit-grid article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.benefit-grid span {
+  grid-row: span 2;
+  color: var(--rosewood);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.benefit-grid strong {
+  font-size: 15px;
+}
+
+.benefit-grid p,
+.micro-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.primary-button,
+.secondary-button,
+.answer-card,
+.meal-choice,
+.text-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.primary-button,
+.secondary-button {
+  width: 100%;
+  padding: 17px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.primary-button {
+  color: #fffaf1;
+  background: linear-gradient(135deg, var(--rosewood-dark), #8e5e56);
+  box-shadow: 0 18px 38px rgba(114, 69, 65, 0.28);
+}
+
+.primary-button:disabled {
+  cursor: default;
+  opacity: 0.76;
+}
+
+.secondary-button {
+  margin-top: 10px;
+  color: var(--rosewood);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid var(--line);
+}
+
+.micro-note {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: var(--muted-strong);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.text-button {
+  padding: 10px 0;
+  color: var(--rosewood);
+  background: transparent;
+  font-weight: 700;
+}
+
+.progress-rail {
+  height: 10px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(114, 69, 65, 0.1);
+}
+
+.progress-rail span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--olive), #a6ae84);
+  transition: width 220ms ease;
+}
+
+.question-card,
+.result-card {
+  min-height: calc(100vh - 112px);
+  padding: 28px 20px 22px;
+}
+
+.answer-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.answer-card,
+.meal-choice {
+  width: 100%;
+  padding: 18px;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.answer-card:hover,
+.meal-choice:hover,
+.meal-choice.is-active {
+  transform: translateY(-2px);
+  border-color: rgba(114, 69, 65, 0.22);
+  box-shadow: 0 14px 34px rgba(83, 52, 45, 0.12);
+}
+
+.answer-card span,
+.meal-choice strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.answer-card small {
+  color: var(--muted);
+}
+
+.persona-summary {
+  margin: 16px 0 20px;
+  font-size: 16px;
+}
+
+.signal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.signal-list span,
+#recipe-goal {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(104, 116, 82, 0.14);
+  color: var(--olive);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.challenge-card {
+  display: grid;
+  gap: 16px;
+  margin: 18px 0;
+  padding: 18px;
+  box-shadow: none;
+}
+
+.challenge-days {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.challenge-days span {
+  display: grid;
+  place-items: center;
+  min-height: 42px;
+  border-radius: 999px;
+  background: rgba(114, 69, 65, 0.1);
+  color: var(--rosewood);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.checkin-hero,
+.recipe-card,
+.checkin-card,
+.feedback-card {
+  margin-bottom: 16px;
+  padding: 20px;
+}
+
+.checkin-hero {
+  box-shadow: 0 18px 54px rgba(83, 52, 45, 0.12);
+}
+
+.recipe-head,
+.section-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.macro-grid,
+.mini-progress-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.macro-card {
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.macro-card div:first-child {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.macro-card span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.macro-card strong {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+}
+
+.macro-card small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.macro-track {
+  height: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(114, 69, 65, 0.09);
+}
+
+.macro-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.macro-card--calm .macro-track i {
+  background: linear-gradient(90deg, var(--olive), #a5ad82);
+}
+
+.macro-card--soft .macro-track i {
+  background: linear-gradient(90deg, #d1ad83, #ebcfac);
+}
+
+.macro-card--warm .macro-track i {
+  background: linear-gradient(90deg, var(--rosewood), #bd8a7c);
+}
+
+.meal-choice-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+#feedback-title {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 720px) {
+  .campaign-shell {
+    width: min(100%, 520px);
+    padding-top: 34px;
+  }
+}
